@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6174!!!!!!!</title>
+    <link rel="stylesheet" href="/css/reset.css"> 
+    <link rel="stylesheet" href="/css/6174.css"> 
+</head>
+<body>
+    <h1>6174</h1>
+    <div> 
+        <input type="text" id="number">
+        <button type="submit" onclick="checkNumber(number.value)">Check Number</button>
+        <button type="submit" onclick="checkNumber(Math.floor(Math.random() * (9999 - 1 + 1)) + 1)">Use Random Number</button>
+    </div>
+    <ul id="results">
+
+    </ul>
+</body>
+</html>
+
+<script>
+    
+var counter = 0
+var listNums = []
+const ul = document.getElementById('results')
+const myInput = document.getElementById('number')
+function checkNumber(number){
+         numberStr = number.toString()
+         numberNum = Number(number)
+         listNums.push(numberNum)
+         myInput.value = ''
+    if ( (Number.isInteger(Number(numberNum))) && numberNum > 0 && numberNum < 10000){
+            if (numberStr.length < 4){
+                let digitsToAdd = 4 - numberStr.length
+                switch (digitsToAdd) {
+                    case 3:
+                        numberStr = "000" + numberStr;
+                        break;
+                    case 2:
+                        numberStr = "00" + numberStr
+                        break;
+                    case 1:
+                        numberStr = "0" + numberStr;
+                        break;
+                }
+            }
+            let Num1 = Number(numberStr.split('').sort().join(""))
+            let Num2 = Number(numberStr.split('').sort((a,b) => b-a).join(""))
+            let Num3 = Num2 - Num1
+            
+            if(Num3 !== 6174 && counter < 100) {
+                counter++
+                checkNumber(Num3)
+            } else {
+                counter++
+                listNums.push(Num3)
+                const element = document.getElementById(listNums[0]);
+                    if (!element) {
+                        const li = document.createElement("li")
+                        li.textContent = listNums[0]
+                        li.id = listNums[0]
+                        li.classList.add('resultgood')
+                        li.dataset.counter = counter
+                        li.dataset.listNums = listNums
+                        li.style.order = listNums[0]
+                        ul.appendChild(li)
+                    }
+                counter = 0
+                listNums = []
+                if (ul.childElementCount === 25) {
+                    window.alert('You seem really bored.')
+                } else if (ul.childElementCount === 50) {
+                    window.alert('You should probably do something else with your time.')
+                } else if (ul.childElementCount === 100) {
+                    const userResponse = confirm('Do you want me to just run all possible combinations so we can get on with our lives?');
+                        if (userResponse) {
+                        let count = 1;
+                            do {
+                                checkNumber(count)
+                                count++
+                            } while (count < 10000);
+                        }
+                }
+            }
+
+    } else {
+        if (counter === 0) {
+            window.alert('Please enter a positive integer between 1 and 9999.')
+            counter = 0
+            listNums = []
+        } else {
+            const element = document.getElementById(listNums[0]);
+                    if (element) {
+                    } else {
+                        const li = document.createElement("li")
+                        li.textContent = listNums[0]
+                        li.id = listNums[0]
+                        li.classList.add('resultbad')
+                        li.style.order = listNums[0]
+                        ul.appendChild(li)
+                    }
+                counter = 0
+                listNums = []
+        }
+    }
+
+}
+
+document.querySelector("ul").addEventListener('click', function(event) {
+    if (event.target.matches("li")) {
+        console.log(event.target.id)
+        console.log(event.target.dataset.counter)
+        console.log(event.target.dataset.listNums)
+    }
+});
+
+
+</script>
