@@ -1,5 +1,5 @@
 async function getAllRepos() {
-    const token = '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'
+    const token = ''
     const response = await fetch('https://api.github.com/user/repos?per_page=100', {
       headers: {
         Authorization: `token ${token}`,
