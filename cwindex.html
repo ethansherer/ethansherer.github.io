@@ -8,11 +8,17 @@
   <title>Commonwealth Lawn & Landscape</title>
   <style>
     body { margin: 0; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif}
+    body {
+    animation-name: fadeIn;
+    animation-duration: 3s; /* Adjust duration as needed */
+    animation-timing-function: ease;
+    animation-fill-mode: forwards; /* Ensures it stays visible after the animation ends */
+}
 
     header { background: #267250; color: white; padding: 0px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
     nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
 
-    .hero { background: url('images/logo.jpg') center/cover no-repeat; color: white; padding: 360px 20px; text-align: center; flex-shrink: 1;}
+    .hero { background: url('images/logo.jpg') center/cover no-repeat; background-size: contain; white; padding: 360px 20px; text-align: center; flex-shrink: 1;}
 
     .hero2 {text-align: center;}
     .hero2 h2 { font-size: 40px; color: black;}
@@ -90,6 +96,7 @@
 
     @media(min-width:960px){ .call-now{ display:none;} }
     @media(max-width:960px){ nav{ display:none;} }
+    @keyframes fadeIn {from { opacity: 0; }to { opacity: 1; }}
   </style>
 </head>
 <body>
